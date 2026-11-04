@@ -176,6 +176,20 @@ li button:hover {
   gap: 0.6rem;
 }
 
+.qui-etes-vous-hero {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #eef6f1 0%, var(--background) 60%);
+  padding: 2rem 0;
+}
+
+.qui-etes-vous-icone {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

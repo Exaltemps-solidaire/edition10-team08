@@ -15,11 +15,13 @@ export function QuiEtesVous({ onChoisi }: { onChoisi: (identite: Identite) => vo
   }, []);
 
   return (
-    <main style={{ maxWidth: 640, margin: "3rem auto", padding: "0 1rem" }}>
-      <h1>Qui êtes-vous ?</h1>
-      <p>Choisissez la personne que vous incarnez pour tester l&rsquo;application.</p>
-      {erreur && <p style={{ color: "crimson" }}>Impossible de charger les membres : {erreur}</p>}
-      <ul style={{ listStyle: "none", padding: 0 }}>
+    <main className="qui-etes-vous-hero">
+      <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 1rem" }}>
+        <div className="qui-etes-vous-icone">🌿</div>
+        <h1>Qui êtes-vous ?</h1>
+        <p>Choisissez la personne que vous incarnez pour tester l&rsquo;application.</p>
+        {erreur && <p style={{ color: "crimson" }}>Impossible de charger les membres : {erreur}</p>}
+        <ul style={{ listStyle: "none", padding: 0 }}>
         {membres.map((m) => (
           <li key={m.membreId}>
             <button
@@ -37,7 +39,8 @@ export function QuiEtesVous({ onChoisi }: { onChoisi: (identite: Identite) => vo
             </button>
           </li>
         ))}
-      </ul>
+        </ul>
+      </div>
     </main>
   );
 }
