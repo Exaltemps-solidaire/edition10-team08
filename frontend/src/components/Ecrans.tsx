@@ -65,6 +65,69 @@ export function EcranImport({ identite, projetId, onImporte }: { identite: Ident
   );
 }
 
+export function EcranTableauDeBord({ projetId }: { projetId: string }) {
+  const [inscriptions, setInscriptions] = useState<InscriptionLigne[]>([]);
+  const [zones, setZones] = useState<{ commune: string; inscriptionIds: string[] }[]>([]);
+  const [affectations, setAffectations] = useState<{ inscriptionId: string; animatriceId: string | null }[]>([]);
+  const [nbAnimatrices, setNbAnimatrices] = useState(0);
+
+  useEffect(() => {
+    let annule = false;
+    Promise.all([api.inscriptions(projetId), api.repartition(projetId), api.equipe(projetId)]).then(
+      ([insc, rep, eq]) => {
+        if (annule) return;
+        setInscriptions(insc);
+        setZones(rep.zones);
+        setAffectations(rep.affectations);
+        setNbAnimatrices(eq.filter((m) => m.roles.includes("animatrice")).length);
+      },
+    );
+    return () => { annule = true; };
+  }, [projetId]);
+
+  const demandesEnAttente = inscriptions.filter((l) => l.champsManquants.length > 0).length;
+  const planifiees = affectations.filter((a) => a.animatriceId).length;
+  const aConfirmer = inscriptions.length - planifiees;
+  const animatricesAffectees = new Set(affectations.filter((a) => a.animatriceId).map((a) => a.animatriceId)).size;
+  const tauxOccupation = nbAnimatrices > 0 ? Math.round((animatricesAffectees / nbAnimatrices) * 100) : 0;
+
+  const tuiles = [
+    { label: "Demandes en attente", valeur: demandesEnAttente, variante: demandesEnAttente > 0 ? "attention" : "ok" },
+    { label: "Interventions planifiées", valeur: planifiees, variante: "ok" },
+    { label: "Taux d'occupation animateurs", valeur: `${tauxOccupation}%`, variante: "ok" },
+    { label: "Interventions à confirmer", valeur: aConfirmer, variante: aConfirmer > 0 ? "attention" : "ok" },
+  ] as const;
+
+  return (
+    <section>
+      <h2>Tableau de bord</h2>
+      <div className="kpi-grid">
+        {tuiles.map((t) => (
+          <div key={t.label} className={`kpi-tuile kpi-tuile--${t.variante}`}>
+            <div className="kpi-valeur">{t.valeur}</div>
+            <div className="kpi-label">{t.label}</div>
+          </div>
+        ))}
+      </div>
+      <h3 style={{ marginTop: "1.5rem" }}>Répartition par secteur géographique</h3>
+      <p style={{ color: "#6b7a73", fontSize: "0.9rem" }}>
+        Pas de carte interactive pour l&rsquo;instant : les secteurs sont groupés par commune.
+      </p>
+      <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "0.4rem" }}>
+        {zones.map((z) => {
+          const affecteesZone = z.inscriptionIds.filter((id) => affectations.find((a) => a.inscriptionId === id)?.animatriceId).length;
+          return (
+            <li key={z.commune} style={{ display: "flex", justifyContent: "space-between", padding: "0.4rem 0.6rem", background: "#fff", border: "1px solid var(--border)", borderRadius: "6px" }}>
+              <span>{z.commune}</span>
+              <span>{affecteesZone}/{z.inscriptionIds.length} affectées</span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
 export function EcranInscriptions({ identite, projetId }: { identite: Identite; projetId: string }) {
   const [lignes, setLignes] = useState<InscriptionLigne[]>([]);
   const [erreur, setErreur] = useState<string | null>(null);

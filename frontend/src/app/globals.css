@@ -175,3 +175,34 @@ li button:hover {
   display: grid;
   gap: 0.6rem;
 }
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.kpi-tuile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+}
+
+.kpi-tuile--attention {
+  border-left-color: #c77d12;
+}
+
+.kpi-valeur {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.1;
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  color: #6b7a73;
+  margin-top: 0.25rem;
+}

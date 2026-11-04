@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { api, type Identite } from "@/lib/api";
 import { QuiEtesVous } from "@/components/QuiEtesVous";
-import { EcranImport, EcranInscriptions, EcranRepartition, EcranAnimatrice } from "@/components/Ecrans";
+import { EcranTableauDeBord, EcranImport, EcranInscriptions, EcranRepartition, EcranAnimatrice } from "@/components/Ecrans";
 
 export default function Home() {
   const [identite, setIdentite] = useState<Identite | null>(null);
@@ -34,6 +34,7 @@ export default function Home() {
       {!projetId && <p>Chargement du projet…</p>}
       {projetId && peutGerer && (
         <>
+          <EcranTableauDeBord key={version} projetId={projetId} />
           <EcranImport identite={identite} projetId={projetId} onImporte={() => setVersion((v) => v + 1)} />
           <EcranInscriptions key={version} identite={identite} projetId={projetId} />
           <EcranRepartition key={version} identite={identite} projetId={projetId} />
