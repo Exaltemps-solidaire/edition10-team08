@@ -35,11 +35,16 @@ export function QuiEtesVous({ onChoisi }: { onChoisi: (identite: Identite) => vo
 
   return (
     <main className="qui-etes-vous-hero">
-      <div style={{ maxWidth: 880, margin: "0 auto", padding: "0 1rem" }}>
-        <div className="qui-etes-vous-icone">🌿</div>
-        <h1 style={{ textAlign: "center" }}>Méditerranée 2000</h1>
-        <p style={{ textAlign: "center" }}>Choisissez votre espace pour accéder à l&rsquo;application.</p>
-        {erreur && <p style={{ color: "crimson" }}>Impossible de charger les membres : {erreur}</p>}
+      <section className="hero-bandeau">
+        <span className="hero-eyebrow">Association loi 1901 · Côte d&rsquo;Azur</span>
+        <h1>Méditerranée 2000</h1>
+        <p>Des interventions pédagogiques pour sensibiliser les écoles au littoral méditerranéen.</p>
+      </section>
+
+      <section className="hero-section">
+        <h2 className="hero-section-titre">Choisissez votre espace</h2>
+        <p className="hero-section-soustitre">Sélectionnez votre profil pour accéder à votre tableau de bord.</p>
+        {erreur && <p style={{ color: "crimson", textAlign: "center" }}>Impossible de charger les membres : {erreur}</p>}
 
         <div className="vues-grille">
           {VUES.map((v) => (
@@ -61,7 +66,7 @@ export function QuiEtesVous({ onChoisi }: { onChoisi: (identite: Identite) => vo
         )}
 
         {vueActive && vueActive.disponible && (
-          <ul style={{ listStyle: "none", padding: 0, marginTop: "1.5rem" }}>
+          <ul style={{ listStyle: "none", padding: 0, marginTop: "1.5rem", maxWidth: 560, marginInline: "auto" }}>
             {membresVue.length === 0 && <p>Aucun membre pour cet espace.</p>}
             {membresVue.map((m) => (
               <li key={m.membreId}>
@@ -82,7 +87,11 @@ export function QuiEtesVous({ onChoisi }: { onChoisi: (identite: Identite) => vo
             ))}
           </ul>
         )}
-      </div>
+      </section>
+
+      <footer className="site-footer">
+        <p>Méditerranée 2000 — association de sensibilisation à l&rsquo;environnement littoral, Côte d&rsquo;Azur.</p>
+      </footer>
     </main>
   );
 }
