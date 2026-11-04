@@ -201,6 +201,74 @@ li button:hover {
   margin-bottom: 0.5rem;
 }
 
+.vues-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+  perspective: 1200px;
+}
+
+.vue-carte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  text-align: left;
+  padding: 1.25rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(47, 125, 94, 0.15);
+  background: linear-gradient(160deg, #ffffff 0%, #eaf6f0 55%, #e4f1fb 100%);
+  color: var(--foreground);
+  box-shadow: 0 10px 20px rgba(27, 36, 32, 0.08), 0 2px 4px rgba(27, 36, 32, 0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+}
+
+.vue-carte:hover {
+  transform: translateY(-4px) rotateX(4deg) rotateY(-3deg);
+  box-shadow: 0 18px 30px rgba(27, 36, 32, 0.16), 0 4px 10px rgba(47, 128, 237, 0.12);
+}
+
+.vue-carte--active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 18px 30px rgba(27, 36, 32, 0.16);
+}
+
+.vue-carte--bientot {
+  opacity: 0.6;
+}
+
+.vue-carte-icone {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.15));
+}
+
+.vue-carte-description {
+  font-size: 0.82rem;
+  color: #6b7a73;
+}
+
+.vue-carte-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: #c77d12;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.vue-note {
+  text-align: center;
+  color: #6b7a73;
+  font-size: 0.9rem;
+}
+
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
