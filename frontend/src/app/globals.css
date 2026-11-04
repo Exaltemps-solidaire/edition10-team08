@@ -354,3 +354,156 @@ li button:hover {
 .board-creneau--complet {
   background: #9aa39d;
 }
+
+/* Maquette dashboard dense — mise en page sidebar + header, style SaaS */
+.dash {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.dash-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid var(--border);
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dash-logo {
+  font-weight: 700;
+  color: var(--eco, #2e8b57);
+  font-size: 1.05rem;
+}
+
+.dash-nav {
+  display: grid;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.dash-nav-item {
+  padding: 0.55rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #3b453f;
+}
+
+.dash-nav-item--actif {
+  background: #eaf6ef;
+  color: var(--eco, #2e8b57);
+  font-weight: 600;
+}
+
+.dash-utilisateur {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.dash-contenu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-header {
+  height: 80px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+}
+
+.dash-recherche {
+  flex: 1;
+  max-width: 420px;
+}
+
+.dash-header-droite {
+  margin-left: auto;
+  background: var(--mer, #2f80ed);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.dash-grille {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.dash-bloc {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 1.1rem 1.25rem;
+}
+
+.dash-planning {
+  width: 100%;
+  border: none;
+}
+
+.dash-planning th,
+.dash-planning td {
+  text-align: center;
+  padding: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.dash-bloc-planning {
+  display: inline-block;
+  width: 100%;
+  height: 1.1rem;
+  border-radius: 4px;
+}
+
+.dash-bloc-planning--confirme {
+  background: var(--eco, #2e8b57);
+}
+
+.dash-bloc-planning--planifie {
+  background: var(--mer, #2f80ed);
+}
+
+.dash-bloc-planning--attente {
+  background: #c77d12;
+}
+
+.dash-bloc-planning--conflit {
+  background: #c0392b;
+}
+
+.dash-alerte {
+  background: #fdecea;
+  color: #8a2c1f;
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.dash-algo-liste {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+}
+
+.dash-algo-liste li {
+  display: flex;
+  justify-content: space-between;
+}
