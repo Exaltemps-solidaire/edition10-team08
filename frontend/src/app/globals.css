@@ -1,6 +1,10 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f9f8;
+  --foreground: #1b2420;
+  --surface: #ffffff;
+  --accent: #2f7d5e;
+  --accent-dark: #225c45;
+  --border: #dde3e0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,4 +50,77 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--accent-dark);
+  margin-bottom: 0.75rem;
+}
+
+section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  background: #a9b6b0;
+  cursor: not-allowed;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+table {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background: #eef3f0;
+  padding: 0.6rem;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.6rem;
+}
+
+li button {
+  background: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+li button:hover {
+  background: #eef3f0;
 }
